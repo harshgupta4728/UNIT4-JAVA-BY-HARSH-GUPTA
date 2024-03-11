@@ -1,0 +1,1239 @@
+47.1.1
+
+A functional interface can only have one functionality to exhibit
+
+
+
+47.1.2
+
+Calculator multiplication = (a, b) -> a * b;
+
+
+
+ 47.1.3
+
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+import java.util.Scanner;
+interface Cube{
+int Compute(int X);
+}
+
+class UserdefinedFunctionalInterface{
+	 public static void main(String args[]){
+		 Scanner S = new Scanner(System.in);
+		 System.out.print("Enter any number: ");
+		 int A = S.nextInt();
+
+ 		 Cube C = (int X)->X*X*X;
+
+ 
+		 int Result = C.Compute(A);
+ 		System.out.println("Cube of value is “+Result);
+	}
+}
+ 47.1.4
+
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class FunctionalInterface {
+    public static void main(String args[]) {
+          new Thread(new Runnable(){ 
+         	 @Override
+        	  public void run() {
+         		System.out.println("Creation of new thread");
+        	 }
+         }).start();
+    }
+}
+
+
+
+
+ 47.1.5
+
+
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+
+
+class FunctionalInterfaceWithLambda {
+	public static void main(String args[]) {
+	
+		new Thread(()->{System.out.println("Creation of new thread");}).start();
+	}
+}
+
+
+
+
+ 48.1.1
+
+
+public class LambdaExpression{
+
+public static void main(String[] args) {
+
+ System.out.println("25");
+
+}
+}
+
+
+
+
+48.1.2
+
+import java.util.ArrayList;
+
+public class LambdaExpression {
+    public static void main(String[] args) {
+        ArrayList<Integer> ArrList = new ArrayList<Integer>();
+
+        ArrList.add(120);
+        ArrList.add(303);
+        ArrList.add(308);
+        ArrList.add(555);
+
+ArrList.forEach(System.out::println);
+
+        System.out.println("All odd elements displayed");
+
+        
+        ArrList.forEach(number -> {
+            if (number % 2 != 0) {
+                System.out.println(number);
+            }
+        });
+    }
+}
+
+
+
+48.1.3
+
+
+Error: cannot find symbol System.out.println(str2.toStrings())
+
+
+
+
+
+
+
+ 49.1.1
+
+
+
+In non-static init block 1
+
+In non-static init block 2
+
+In constructor
+
+value = 3
+
+In non-static init block 1
+
+In non-static init block 2
+
+In constructor
+
+value = 3
+
+
+
+49.2.1
+
+
+In static init block 1
+
+
+
+In static init block 2
+
+
+
+In constructor
+
+
+
+In constructor
+
+
+
+50.1.1
+
+
+public class StaticFieldDemo {
+
+    public static void main(String[] args) {
+        A.aStaticField = 5;
+        A a1 = new A(3);
+        A a2 = new A(4);
+        System.out.println("a1=" + a1);
+        System.out.println("a2=" + a2);
+        System.out.println("A.aStaticField=" + A.aStaticField);
+    }
+}
+
+class A {
+    public static int aStaticField;
+    private int instanceField;
+
+    public A(int instanceField) {
+        this.instanceField = instanceField;
+    }
+
+    public String toString() {
+        return "A [instanceField=" + instanceField + ", aStaticField=" + aStaticField + "]";
+    }
+}
+
+
+
+50.2.1
+
+
+public class StaticMethodDemo {
+
+    public static void main(String[] args) {
+        A a1 = new A(3);
+        A a2 = new A(4);
+        System.out.println("a1=" + a1);
+        System.out.println("a2=" + a2);
+        System.out.println("A.getInstanceCount()=" + A.getInstanceCount());
+    }
+}
+
+class A {
+    private static int counter;
+    private int instanceField;
+
+    public A(int instanceField) {
+        this.instanceField = instanceField;
+        counter++;
+    }
+
+    public static int getInstanceCount() {
+        return counter;
+    }
+
+    public String toString() {
+        return "A [instanceField=" + instanceField + ", counter=" + counter + "]";
+    }
+}
+
+
+
+50.3.1
+
+
+public class StaticClassDemo {
+    public static void main(String[] args) {
+        A a1 = new A(3);
+        A a2 = new A(4);
+        System.out.println("a1 = " + a1);
+        System.out.println("a2 = " + a2);
+    }
+
+    static class A {
+        private int value;
+
+        public A(int value) {
+            this.value = value;
+        }
+
+        public String toString() {
+            return "A [value = " + value + "]";
+        }
+    }
+}
+
+
+
+51.1.1
+
+public class Namer {
+    private String name;
+
+    public Namer(String name) {
+        this.name = name;
+    }
+
+    class Prefixer {
+        private String prefix;
+
+        public Prefixer(String prefix) {
+            this.prefix = prefix;
+        }
+
+        public String getCompleteName() {
+            return prefix + " " + name;
+        }
+    }
+
+    public static void main(String[] args) {
+        Namer namer = new Namer("Doodle");
+        Namer.Prefixer prefixer = namer.new Prefixer("Mr.");
+        System.out.println(prefixer.getCompleteName());
+    }
+}
+
+
+
+51.2.1
+
+
+
+class A {
+    class B {
+        public B() {
+            System.out.println("In inner class B's constructor");
+        }
+    }
+
+    static class C {
+        public C() {
+            System.out.println("In static nested class C's constructor");
+        }
+    }
+
+    public static void main(String[] args) {
+        A.B bInstance = new A().new B();
+        A.C cInstance = new A.C();
+    }
+}
+
+
+
+52.1.1
+
+
+public class A {
+    private int value = 7;
+
+    class B {
+        private B() {
+            System.out.println("In inner class B's constructor");
+        }
+    }
+
+    static class C {
+        private C() {
+            System.out.println("In static nested class C's constructor");
+        }
+    }
+
+    public void someMethodInClassA() {
+        class D {
+            private D() {
+                System.out.println("In local class D's constructor");
+            }
+        }
+
+        D d = new D();
+        System.out.println("value=" + value);
+    }
+
+    public static void main(String[] args) {
+        A a = new A();
+        A.B b = a.new B();
+        A.C c = new A.C();
+        a.someMethodInClassA();
+    }
+}
+
+
+
+52.2.1
+
+
+interface Printer {
+    public void printMe();
+}
+
+class A {
+    public static void main(String[] args) {
+        class PrinterImpl implements Printer {
+            public void printMe() {
+                System.out.println("I am in printMe method of the local class PrinterImpl instance");
+            }
+        }
+
+        Printer myPrinter1 = new PrinterImpl();
+
+        Printer myPrinter2 = new Printer() {
+            public void printMe() {
+                System.out.println("I am in printMe method of the anonymous class");
+            }
+        };
+
+        myPrinter1.printMe();
+        myPrinter2.printMe();
+    }
+}
+
+
+
+52.2.2
+
+
+package q11298;
+
+interface Printer {
+    public void printMe();
+}
+
+class Prefixer {
+    protected String prefix;
+
+    public Prefixer(String prefix) {
+        this.prefix = prefix;
+    }
+
+    public String getPrefixedName(String name) {
+        return prefix + " " + prefix + " " + name;
+    }
+}
+
+public class AnonymousExample {
+    public static void main(String[] args) {
+        Printer printer = new Printer() {
+            public void printMe() {
+                System.out.println("printMe is called!");
+            }
+        };
+
+        Prefixer doublePrefixer = new Prefixer("Hello") {
+            public String getPrefixedName(String name) {
+                return prefix + " " + prefix + " " + name;
+            }
+        };
+
+        printer.printMe();
+        System.out.println(doublePrefixer.getPrefixedName("James"));
+    }
+}
+
+
+
+52.2.3
+
+
+Statements 1 and 2 will result in compilation errors.
+
+
+
+
+53.1.1
+
+value4 declared in statement 4 is called a constant.
+
+
+
+
+53.1.2
+
+
+Statement 4 will not result in a compilation error, since field comments is not declared as final.
+
+
+Statement 6 will result in a compilation error.
+
+
+
+53.2.1
+
+method1 of class A in statement 1 is overridden in class B in statement 4.
+
+
+
+
+54.1.1
+
+We declare a class as final, when we do not want someone to change its implementation by subclassing it.
+
+
+
+54.2.1
+
+
+In statement 2, will result in compilation error. Since class A is declared as final it cannot be extended by class B.
+
+Statement 5 will result in a compilation error.
+
+
+
+
+55.1.1
+
+
+Object a1 = new Object(); //statement 1
+Object a2 = new Object(); //statement 2
+a2 = a1;
+In the above code, the initial object referred by a2 in statement 2 will be available for GC after the statement a2 = a1; is executed.
+
+
+
+
+55.2.1
+
+
+GC (Garbage Collector Thread) automatically calls the finalize method of the object whenever it is trying to reclaim the memory occupied by the object.
+
+
+
+56.1.1
+
+In the statement
+System.out.println("Uranus");
+println is a method.
+
+
+
+
+56.1.2
+
+
+currentTimeMillis() is a static method in System class. So we can directly call the method on the class name, as given below:
+System.currentTimeMillis();
+
+
+The currentTimeMillis() method in System class returns a long value representing the total time elapsed from the midnight of January 1, 1970 UTC until the current system time.
+
+
+The currentTimeMillis() method in System class returns a long value with precision upto nanoseconds. We can use this method when we want to measure time difference between two events to the precision of nanoseconds.
+
+
+int[] sourceArr = {1, 3, 5, 7, 9};
+int[] destinationArr = new int[5];
+System.arraycopy(sourceArr, 1, destinationArr, 1, 2);
+After the arraycopy method invocation, the values in destinationArr array will be {0, 3, 5, 0, 0}
+
+
+
+
+56.2.1
+
+
+The output will be as given below:
+Up up and away!
+
+
+
+
+56.3.1
+
+
+
+package q11312;
+
+public class TimingExample {
+    public static void main(String[] args) {
+        long startTime = System.currentTimeMillis();
+
+        int total = 0;
+        for(int i = 0; i < 10000; i++) {
+            total += i;
+        }
+        
+        long endTime = System.currentTimeMillis();
+
+        System.out.println("Time taken in milliseconds = " + (endTime - startTime));
+    }
+}
+
+
+
+57.1.1
+
+
+package q11313;
+
+import java.util.*;
+
+public class ArraysDemo {
+    public static void main(String[] args) {
+        Integer[] integerArr = {382, 34, 4, 223, 331};
+        Arrays.sort(integerArr);
+        System.out.println(Arrays.asList(integerArr));
+
+        // Sort the integerArr
+        Integer[] integerArr2 = {4, 34, 223, 331, 382};
+        System.out.println(Arrays.equals(integerArr, integerArr2));
+    }
+}
+
+
+
+57.1.2
+
+
+
+package q11314;
+
+import java.util.*;
+
+public class CollectionsDemo {
+    public static void main(String... args) {
+        List<Integer> integerList = Arrays.asList(3, 33, 333, 3333);
+        System.out.println("integerList: " + integerList);
+
+        Collections.shuffle(integerList, new Random(1));
+        System.out.println("After shuffle integerList: " + integerList);
+
+        Collections.sort(integerList);
+        System.out.println("After sort integerList: " + integerList);
+
+        Collections.fill(integerList, 7);
+        System.out.println("After filling integerList with 7: " + integerList);
+    }
+}
+
+
+
+
+
+
+
+
+
+57.2.1
+
+
+This Moment : [Current Date and Time]
+
+Total milli seconds from epoch to this moment : [Milliseconds since epoch]
+
+
+
+
+57.2.2
+
+
+package q11397;
+
+import java.util.*;
+
+public class DateExample {
+
+    public static void main(String... args) throws InterruptedException {
+        System.out.println("Sleeping for 1 second...");
+
+        // Create a new instance of Date object.
+        Date timeAsDate = new Date();
+        long oldTimeInMillis = timeAsDate.getTime();
+
+        // Use a method to return the number of milliseconds starting from January 1, 1970
+        Thread.sleep(1000);
+
+        long newCurrentTimeInMillis = System.currentTimeMillis();
+        // Use a method to return the current time as milliseconds from the epoch time
+
+        if (newCurrentTimeInMillis - oldTimeInMillis >= 1000) {
+            System.out.println("This thread resumed after 1 or more seconds");
+        }
+    }
+}
+
+
+
+
+57.2.3
+
+
+package q11398;
+
+import java.util.*;
+import java.text.*;
+
+public class DateFormatInJapan {
+
+    public static String getJapaneseShortDate(Date date) {
+        Format f = new SimpleDateFormat("yyyy/MM/dd");
+        String ans = f.format(date);
+        return ans;
+    }
+}
+
+
+
+
+57.2.4
+
+
+
+package q11399;
+
+import java.util.*;
+import java.text.*;
+
+public class SimpleDateFormatDemo {
+
+    public static void main(String[] args) throws ParseException {
+        String dateText = "15-08-1947";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        
+        // parse the dateText here and print.
+        Date date = simpleDateFormat.parse(dateText);
+        System.out.println("parsedDate: " + date);
+    }
+}
+
+
+
+
+57.2.5
+
+
+
+package q11589;
+
+import java.util.*;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+
+public class CalendarDemo {
+
+    public String setTime(String dateString) throws ParseException {
+        // use the correct format string as argument for the constructor
+        SimpleDateFormat sd = new SimpleDateFormat("MMM-dd-yyyy");
+
+        // parses text from the beginning of the given string to produce a date
+        Date date = sd.parse(dateString);
+
+        // configuring the current object to the value of date
+        Calendar currentTime = Calendar.getInstance();
+        currentTime.setTime(date);
+
+        // format method on SimpleDateFormat returns a string representation of the passed date
+        return sd.format(currentTime.getTime());
+    }
+}
+
+
+
+
+
+57.2.6
+
+
+
+package q11590;
+
+import java.util.*;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+
+public class CalendarAddition {
+
+    public String addDays(String dateString, int days) throws ParseException {
+        // use the correct format string as argument for the constructor
+        SimpleDateFormat sd = new SimpleDateFormat("MMM-dd-yyyy");
+
+        // parses text from the beginning of the given string to produce a date
+        Date date = sd.parse(dateString);
+
+        Calendar cal = Calendar.getInstance();
+        // configuring the cal object to the value of date
+        cal.setTime(date);
+
+        // supply the correct arguments to the add method below
+        cal.add(Calendar.DATE, days);
+
+        // format method on SimpleDateFormat returns a string representation of the passed date
+        return sd.format(cal.getTime());
+    }
+}
+
+
+
+57.2.7
+
+
+
+df = DateFormat.getInstance();
+
+
+
+
+
+
+
+
+
+57.2.8
+
+
+package q11592;
+
+import java.time.*;
+import java.time.temporal.*;
+
+public class LocalDateDemo {
+
+    public static void main(String[] args) {
+        // Get a local date of May 23, 1995
+        LocalDate javaBirthday = LocalDate.of(1995, Month.MAY, 23);
+
+        TemporalAdjuster adjuster = TemporalAdjusters.next(DayOfWeek.SUNDAY);
+        LocalDate nextSunday = javaBirthday.with(adjuster);
+
+        // Print the statement as follows:
+        // Java's birthday was on DATE, and the cake was cut on next Sunday: DATE
+        System.out.println("Java's birthday was on " + javaBirthday + ", and the cake was cut on next Sunday : " + nextSunday+".");
+    }
+}
+
+
+
+ 57.3.1
+
+
+generates 5 random numbers below 100
+
+
+
+58.1.1
+
+
+Multithreading is the execution of multiple threads within a single task, whereas multitasking is the execution of multiple tasks simultaneously.
+
+
+
+58.2.1
+
+
+
+package q9360497;
+
+class MyThread extends Thread {
+    public void run() {
+        // Code to be executed in the thread
+        for (int i = 1; i <= 5; i++) {
+            // complete the below code so that it prints the thread with sleep time 100
+            System.out.println("Thread: " + i);
+            try {
+                Thread.sleep(100); // Pause for 100 milliseconds
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+public class SleepDemo {
+    public static void main(String[] args) {
+        MyThread thread = new MyThread();
+        thread.start(); // Start the thread
+
+        // Code to be executed in the main thread
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("Main: " + i);
+            try {
+                Thread.sleep(100); // Pause for 100 milliseconds
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+
+
+
+58.2.2
+
+
+
+package q36051;
+
+public class SimpleThreadDemo {
+    public static void main(String[] args) throws InterruptedException {
+        Counter c1 = new Counter("Ganga");
+        Thread t1 = new Thread(c1);
+
+        System.out.println("Before start() method call t1.getState() = " + t1.getState());
+        System.out.println("Before start() method call t1.isAlive() = " + t1.isAlive());
+
+        t1.start();
+
+        System.out.println("After start() method call t1.getState() = " + t1.getState());
+        System.out.println("After start() method call t1.isAlive() = " + t1.isAlive());
+
+        t1.join();
+
+        System.out.println("After t1 has terminated t1.getState() = " + t1.getState());
+        System.out.println("After t1 has terminated t1.isAlive() = " + t1.isAlive());
+    }
+
+    static class Counter implements Runnable {
+        private String name;
+
+        public Counter(String name) {
+            this.name = name;
+        }
+        public void run() {
+            for (int i = 0; i < 3; i++) {
+                System.out.println(name + " : " + i);
+            }
+        }
+    }
+}
+
+
+
+59.1.1
+
+
+import java.util.*;
+
+public class SimpleThreadDemo3 {
+
+    public static void main(String[] args) throws InterruptedException {
+        List<String> entriesList = Collections.synchronizedList(new ArrayList<String>());
+        Counter c1 = new Counter("Ganga", entriesList);
+        
+        Thread t1 = new Thread(c1); // create a new thread object and pass a runnable instance
+        t1.start(); // start a new thread
+
+        System.out.println("started t1 thread");
+
+        t1.join(); // use join() method to ensure that the main thread waits for the new thread to finish
+
+        System.out.println("t1 has completed. t1.isAlive() = " + t1.isAlive());
+
+        System.out.println("At the end entriesList contains ");
+        for (String entry : entriesList) {
+            System.out.println(entry);
+        }
+    }
+
+    static class Counter implements Runnable {
+        private String name;
+        private List<String> entriesList;
+
+        public Counter(String name, List<String> entriesList) {
+            this.name = name;
+            this.entriesList = entriesList;
+        }
+
+        public void run() {
+            for (int i = 0; i < 10; i++) {
+                synchronized (entriesList) { // synchronize access to shared resource
+                    entriesList.add(name + " : " + i);
+                }
+            }
+        }
+    }
+}
+
+
+
+
+59.1.2
+
+
+The output could be 6-1 6-2 5-1 5-2
+	
+
+
+
+
+
+
+59.1.3
+
+
+package q11345;
+
+public class WaitNotifyDemo {
+
+    public static void main(String[] args) throws InterruptedException {
+        Object sharedLock = new Object();
+        Waiter waiter = new Waiter(sharedLock);
+        Notifier notifier = new Notifier(sharedLock);
+        Thread t1 = new Thread(waiter);
+        Thread t2 = new Thread(notifier);
+        t1.start();
+        t2.start();
+        t2.join();
+        t1.join();
+    }
+
+    static class Waiter implements Runnable {
+        private Object sharedLock;
+
+        public Waiter(Object sharedLock) {
+            this.sharedLock = sharedLock;
+        }
+
+        public void run() {
+            synchronized (sharedLock) {
+                for (int i = 0; i < 10; i++) {
+                    System.out.println("Waiter : " + i);
+                    if (i == 5) {
+                        System.out.println("Waiter will wait now until notified by Notifier");
+                        try {
+                            sharedLock.wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        System.out.println("Waiter has come out of wait.");
+                    }
+                }
+            }
+        }
+    }
+
+    static class Notifier implements Runnable {
+        private Object sharedLock;
+
+        public Notifier(Object sharedLock) {
+            this.sharedLock = sharedLock;
+        }
+
+        public void run() {
+            System.out.println("Notifier is busy taking a nap to 7 secs.");
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            synchronized (sharedLock) {
+                System.out.println("Hurray! Notifier is awake and is about to call notify().");
+                sharedLock.notify();
+            }
+        }
+    }
+}
+
+
+
+
+
+59.1.4
+
+
+The code throws IllegalMonitorStateException.
+
+
+
+
+ 60.1.1
+
+
+
+package q36053;
+
+public class RunnableDemo {
+
+public static void main(String[] args) throws InterruptedException {
+
+Counter c1 = new Counter("Ganga");
+
+
+Counter c2 = new Counter("Yamuna");
+
+Counter c3= new Counter("Narmada");
+
+c1.run();
+
+Thread t1 = new Thread(c2);
+
+Thread t2 = new Thread(c3);
+
+t1.start();
+
+System.out.println("called t1.start()");
+t2.start();
+
+System.out.println("called t2.start()");
+
+try{
+
+t1.join();
+t2.join();
+} catch (InterruptedException e) {
+
+e.printStackTrace();
+}
+System.out.println("t1 has completed. t1.isAlive() = "+t1.isAlive());
+
+System.out.println("t2 has completed. t2.isAlive() = "+t2.isAlive());
+}}
+class Counter implements Runnable {
+
+private String name;
+
+public Counter (String name) {
+
+this.name = name;
+}
+public void run() {
+
+for (int i = 0; i < 3; i++) {
+
+System.out.println(name + " : " + i);
+
+try{
+
+Thread.sleep(500);
+
+} catch (InterruptedException e) {
+
+e.printStackTrace();
+}}}}
+
+
+
+
+60.1.2
+
+
+4
+6
+7
+
+
+60.1.3
+
+
+ package q11349;
+
+public class ThreadDemo {
+
+public static void main(String[] args) throws Exception {
+
+Thread t1 = new Thread(new Printer ("Good morning", 1, 2));
+
+Thread t2 = new Thread(new Printer("Hello", 1, 2));
+
+Thread t3= new Thread(new Printer("Welcome", 3, 1));
+
+t1.start();
+
+t2.start();
+
+t3.start();
+
+t1.join();
+
+t2.join();
+
+t3.join();
+
+System.out.println("All the three threads t1, t2 and t3 have completed execution.");
+
+
+}}
+class Printer implements Runnable {
+private String message;
+private int delay,count;
+
+public Printer (String message, int delay, int count) {
+
+this.message =message;
+
+this.delay=delay;
+
+this.count=count;
+}
+public void run() {
+
+for (int i = 0; i<count; i++) {
+
+System.out.println(message);
+}}}
+
+
+
+
+
+
+
+
+60.1.4
+
+
+
+package q11350;
+
+public class JoinThreadDemo {
+
+    public static void main(String[] args) throws InterruptedException {
+        Thread t1 = new Thread(new Counter(“Spain”));
+        Thread t2 = new Thread(new Counter(“UAE”));
+
+        System.out.println(“t1 before start t1.isAlive() : “ + t1.isAlive());
+        System.out.println(“t2 before start t2.isAlive() : “ + t2.isAlive());
+
+        t1.start();
+        t2.start();
+
+        System.out.println(“started t1 and t2 threads”);
+
+        System.out.println(“t1 after start t1.isAlive() : “ + t1.isAlive());
+
+        t2.join();
+
+        System.out.println(“t2 after start t2.isAlive() : “ + t2.isAlive());
+    }
+
+    static class Counter implements Runnable {
+        private String name;
+
+        public Counter(String name) {
+            this.name = name;
+        }
+
+        public void run() {
+            for (int i = 0; i < 3; i++) {
+                System.out.println(name + “ : “ + i);
+            }
+        }
+    }
+}
+
+
+
+
+60.1.5
+
+
+package q11351;
+
+public class DaemonThreadDemo extends Thread {
+
+    public void run() {
+        if (Thread.currentThread().isDaemon()) {
+            System.out.println(“This is daemon thread”);
+        } else {
+            System.out.println(“This is not a daemon thread”);
+        }
+    }
+
+    public static void main(String[] args) {
+        DaemonThreadDemo t1 = new DaemonThreadDemo();
+        DaemonThreadDemo t2 = new DaemonThreadDemo();
+        DaemonThreadDemo t3 = new DaemonThreadDemo();
+
+        t1.setDaemon(true);
+
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
+
+
+  
